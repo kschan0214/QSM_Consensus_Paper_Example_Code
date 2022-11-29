@@ -13,8 +13,8 @@
 
 ##### User input #####
 # Currently we use a relative path here
-# if it doesn't work then set the path to the location you will be working on 
-export work_dir=$(pwd)/../
+# if it doesn't work, or your download the scripts from Github, then set the path to the location you will be working on 
+export work_dir=$(pwd)/../../
 ## 20220809: tested on dcm2niix version 1.0.20220720
 ## shall comment out if the software is already available locally
 # module load dcm2niix

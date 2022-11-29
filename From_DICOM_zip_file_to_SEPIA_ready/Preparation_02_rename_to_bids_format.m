@@ -1,15 +1,23 @@
 %% Preparation_02_rename_to_bids_format.m
-% Rename dcm2niix output to BIDS alike format
+%
+% Objective:
+%   (1) Rename dcm2niix output to BIDS alike format
 % 
+% Compartibility: Matlab R2016b onward due to the use of contains.m
+%
 % Kwok-shing Chan @ DCCN
 % kwokshing.chan@donders.ru.nl
 % Date created: 08 Sep 2022
-% Compartibility: Matlab R2016b onward due to the use of contains.m
-%% main
-% directories to work on
-work_dir        = fullfile(pwd,'..');
+%
+%% User input 
+% Currently we use a relative path here
+% if it doesn't work, or your download the scripts from GitHub, then set the path to the location you will be working on 
+work_dir        = fullfile(pwd,'..','..');
 converted_dir   = fullfile(work_dir,'converted/');
 
+%%%%%%% End of user input %%%%%%%
+
+%% main
 vendor          = {'GE' ,'PHILIPS' ,'SIEMENS'};
 
 % loop for all vendors

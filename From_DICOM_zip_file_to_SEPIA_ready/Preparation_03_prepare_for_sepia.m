@@ -1,17 +1,25 @@
 %% Preparation_02_rename_to_bids_format.m
-% (1) Concatenate multiple 3D volumn multi-echo data into a 4D file
-% (2) Create SEPIA header file for each dataset
+%
+% Objective:
+%   (1) Concatenate multiple 3D volumn multi-echo data into a 4D file
+%   (2) Create SEPIA header file for each dataset
+%
+% Dependencies: 
+%   (1) SEPIA v1.2.0
+%
 % Kwok-shing Chan @ DCCN
 % kwokshing.chan@donders.ru.nl
 % Date created: 08 Sep 2022
-% Dependency: SEPIA v1.1.0
+%
+%% User input 
+% Currently we use a relative path here
+% if it doesn't work, or your download the scripts from GitHub, then set the path to the location you will be working on 
+work_dir        = fullfile(pwd,'..','..');
+%%%%%%% End of user input %%%%%%%
 
 %% Step 1: convert 3D volumes into 4D
 % add path
 sepia_addpath
-
-% directories to work on, adapt 'work_dir' to your location
-work_dir        = fullfile(pwd,'..');
 
 converted_dir   = fullfile(work_dir,'converted');
 derivatives_dir = fullfile(work_dir,'derivatives');

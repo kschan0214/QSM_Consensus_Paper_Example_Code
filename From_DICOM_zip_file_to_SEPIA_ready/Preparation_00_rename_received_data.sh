@@ -12,8 +12,8 @@
 
 ############### User input ###############
 # Currently we use a relative path here
-# if it doesn't work then set the path to the location you will be working on 
-export work_dir=$(pwd)/../
+# if it doesn't work, or your download the scripts from Github, then set the path to the location you will be working on 
+export work_dir=$(pwd)/../../
 ############### End of user input ##########
 
 # DICOM image will be stored in raw directory
