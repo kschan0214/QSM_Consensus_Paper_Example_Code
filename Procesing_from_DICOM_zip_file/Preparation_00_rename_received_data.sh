@@ -2,7 +2,7 @@
 #
 # Convert DICOM images into NIFTI format
 #
-# OS: Linux CentOS 7 
+# Tested on OS: (1) Linux CentOS 7; (2) macOS 12.6
 #
 # Creator: Kwok-shing Chan @DCCN
 # kwokshing.chan@donders.ru.nl
@@ -10,10 +10,11 @@
 # Date edit:
 ################################################################################
 
-##### User input #####
-# set the location in where you will be working on 
+############### User input ###############
+# Currently we use a relative path here
+# if it doesn't work then set the path to the location you will be working on 
 export work_dir=$(pwd)/../
-##### End of user input #####
+############### End of user input ##########
 
 # DICOM image will be stored in raw directory
 export raw_dir=${work_dir}raw/

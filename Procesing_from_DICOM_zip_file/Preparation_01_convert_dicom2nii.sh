@@ -2,8 +2,8 @@
 #
 # Convert DICOM images into NIFTI format
 #
-# OS: Linux CentOS 7 
-# Dependencies: (1) dcm2niix
+# Tested on OS: (1) Linux CentOS 7; (2) macOS 12.6
+# Dependencies: (1) dcm2niix (tested with version 1.0.20220720)
 #
 # Creator: Kwok-shing Chan @DCCN
 # kwokshing.chan@donders.ru.nl
@@ -12,6 +12,8 @@
 ################################################################################
 
 ##### User input #####
+# Currently we use a relative path here
+# if it doesn't work then set the path to the location you will be working on 
 export work_dir=$(pwd)/../
 ## 20220809: tested on dcm2niix version 1.0.20220720
 ## shall comment out if the software is already available locally
@@ -39,7 +41,7 @@ echo ${sub_dir_name}
 out_dir=${converted_dir}${curr_vendor}/${sub_dir_name}/GRE
 mkdir -p ${out_dir}
 echo $out_dir
-## convert DICOM to NII
+## convert DICOM to compressed NIfTI
 dcm2niix -z y -o ${out_dir} ${sub_dir}
 
 done
