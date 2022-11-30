@@ -11,8 +11,9 @@
 ################################################################################
 
 ############### User input ###############
+# Specify the path of the top directory containing the DICOMs and scripts
 # Currently we use a relative path here
-# if it doesn't work, or your download the scripts from Github, then set the path to the location you will be working on 
+# If it doesn't work, or your download the scripts from GitHub, then you will have to set specify the path manually
 export work_dir=$(pwd)/../../
 ############### End of user input ##########
 

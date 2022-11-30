@@ -3,7 +3,7 @@
 # Convert DICOM images into NIFTI format
 #
 # Tested on OS: (1) Linux CentOS 7; (2) macOS 12.6
-# Dependencies: (1) dcm2niix (tested with version 1.0.20220720)
+# Dependencies: (1) dcm2niix (tested on version 1.0.20220720)
 #
 # Creator: Kwok-shing Chan @DCCN
 # kwokshing.chan@donders.ru.nl
@@ -12,12 +12,10 @@
 ################################################################################
 
 ##### User input #####
+# Specify the path of the top directory containing the DICOMs and scripts
 # Currently we use a relative path here
-# if it doesn't work, or your download the scripts from Github, then set the path to the location you will be working on 
+# If it doesn't work, or your download the scripts from GitHub, then you will have to set specify the path manually
 export work_dir=$(pwd)/../../
-## 20220809: tested on dcm2niix version 1.0.20220720
-## shall comment out if the software is already available locally
-# module load dcm2niix
 ##### End of user input #####
 
 export raw_dir=${work_dir}raw/

@@ -9,13 +9,14 @@
 % kwokshing.chan@donders.ru.nl
 % Date created: 08 Sep 2022
 %
-%% User input 
+%% Mandatory user input 
+% Specify the path of the top directory containing the DICOMs and scripts
 % Currently we use a relative path here
-% if it doesn't work, or your download the scripts from GitHub, then set the path to the location you will be working on 
+% If it doesn't work, or your download the scripts from GitHub, then you
+% will have to set specify the path manually
+
 work_dir        = fullfile(pwd,'..','..');
 converted_dir   = fullfile(work_dir,'converted/');
-
-%%%%%%% End of user input %%%%%%%
 
 %% main
 vendor          = {'GE' ,'PHILIPS' ,'SIEMENS'};
