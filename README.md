@@ -6,7 +6,7 @@ The example codes implemented QSM reconstruction using the SEPIA framework. Befo
 
 ### Environment
 
-- Matlab R2022a (but the scripts are backwards compatible to early Matlab version from R2016b onwards)
+- Matlab R2016b onwards
 
 ### Dependencies
 
@@ -83,51 +83,82 @@ Now the data are ready for QSM recon in SEPIA!
 The data should be organised in the following way after the above operations
 
 ```
-{
   QSM_consensus_paper/
-    |-- converted     % dcm2niix output
-    | |-- GE
-    | | |-- Bipolar
-    | | `-- Monopolar
-    | |-- PHILIPS
-    | | |-- Bipolar_CLEAR
-    | | |-- Bipolar_SYNERGY
-    | | |-- Monopolar_CLEAR
-    | | `-- Monopolar_SYNERGY
-    | `-- SIEMENS
-    |   |-- Bipolar
-    |   `-- Monopolar
-    |-- derivatives   % directory contains all derived output
-    | |-- ANTs
-    |   `-- Coregistration
-    |     `-- Transform    % rigid body transform matrices to common (MNI) space
-    | `-- SEPIA     % SEPIA output
+    |-- converted                               % dcm2niix output
     |   |-- GE
-    |   | |-- Bipolar
-    |   | | `-- GRE
-    |   | |   `-- Pipeline_romeo_vsharp_itik % Standard reconstruction output
-    |   | |     |-- fansi     % Dipole inversion alternative 2 output
-    |   | |     `-- medi     % Dipole inversion alternative 1 output
-    |   | `-- Monopolar
+    |   |   |-- Bipolar
+    |   |   `-- Monopolar
+    |   |-- PHILIPS
+    |   |   |-- Bipolar_CLEAR
+    |   |   |-- Bipolar_SYNERGY
+    |   |   |-- Monopolar_CLEAR
+    |   |   `-- Monopolar_SYNERGY
+    |   `-- SIEMENS
+    |       |-- Bipolar
+    |       `-- Monopolar
+    |-- derivatives                             % directory contains all derived output
+    |   |-- ANTs
+    |   `-- Coregistration
+    |       `-- Transform                       % rigid body transform matrices to common (MNI) space
+    | `-- SEPIA                                 % SEPIA output
+    |   |-- GE
+    |   |   |-- Bipolar
+    |   |   |   `-- GRE
+    |   |   |       `-- Pipeline_Standard       % Standard reconstruction output
+    |   |   |       |-- Pipeline_Alternative1   % Dipole inversion alternative 1 output
+    |   |   |       `-- Pipeline_Alternative2   % Dipole inversion alternative 2 output
+    |   |   `-- Monopolar
     |   |-- PHILIPS
     |   `-- SIEMENS
     |-- protocols     % Protocol text files
     |-- raw     % DICOM images
-    | |-- GE
-    | | |-- Bipolar    % Bipolar readout acquisition
-    | | | `-- GRE
-    | | `-- Monopolar    % Monopolar readout acquisition
-    | |-- PHILIPS
-    | | |-- Bipolar_CLEAR    % with CLEAR normalisation
-    | | |-- Bipolar_SYNERGY   % with SYNERGY normalisation
-    | | |-- Monopolar_CLEAR
-    | | `-- Monopolar_SYNERGY
-    | `-- SIEMENS
-    |   |-- Bipolar
-    |   `-- Monopolar
+    |   |-- GE
+    |   |   |-- Bipolar             % Bipolar readout acquisition
+    |   |   |   `-- GRE
+    |   |   `-- Monopolar           % Monopolar readout acquisition
+    |   |-- PHILIPS
+    |   |   |-- Bipolar_CLEAR       % with CLEAR normalisation
+    |   |   |-- Bipolar_SYNERGY     % with SYNERGY normalisation
+    |   |   |-- Monopolar_CLEAR
+    |   |   `-- Monopolar_SYNERGY
+    |   `-- SIEMENS
+    |       |-- Bipolar
+    |       `-- Monopolar
     `-- QSM_Consensus_Paper_Example_Code % containing all the scripts
-    |-- SEPIA_final_Pipeline   % SEPIA pipeline config files for standard
-    |-- SEPIA_final_fansi   % SEPIA pipeline config files for alternative 2
-    `-- SEPIA_final_medi   % SEPIA pipeline config files for alternative 1 
-}
+        |-- SEPIA_Standard_Pipeline         % SEPIA pipeline config files for Standard
+        |-- SEPIA_Alternative1_Pipeline     % SEPIA pipeline config files for Alternative 1 (MEDI)
+        `-- SEPIA_Alternative2_Pipeline     % SEPIA pipeline config files for Alternative 2 (FANSI)
 ```
+
+## QSM reconstruction pipeline
+
+This section describes all the QSM reconstruction processing steps performed **in SEPIA**. All the processing steps are specified in the SEPIA pipeline configuration files, which are in the sub-directories of the script directory: ‘scripts/SEPIA_Standard_Pipeline/’, ‘scripts/SEPIA_Alternative1_Pipeline/’ and ‘scripts/SEPIA_Alternative2_pipeline/’, corresponding to the three processing pipelines demonstrated as follows.
+
+### Environment and dependencies
+
+The data were processed using the following set-up
+
+#### Operating system
+
+- Linux CentOS 7
+
+#### Environment
+
+- Matlab R2022a (but the scripts are backwards compatible to early Matlab version from R2016b onwards)
+
+#### Dependencies
+
+- [SEPIA](https://github.com/kschan0214/sepia/releases/tag/v1.2) (v1.2)
+- [MRITOOLS](https://github.com/korbinian90/CompileMRI.jl/releases/tag/v3.5.5) (v3.5.5)
+- [MRI susceptibility calculation methods](https://xip.uclb.com/product/mri_qsm_tkd) (accessed 12 September 2019)
+- [MEDI toolbox](http://pre.weill.cornell.edu/mri/pages/qsm.html) (release: 15th January 2020)
+- [FANSI toolbox](https://gitlab.com/cmilovic/FANSI-toolbox) (v3)
+
+### Processing steps
+
+#### Step 1: Preparation
+
+- (GE only) Phase data is inverted before processing (i.e., phase = -phase), so that paramagnetic susceptibility gives a positive value while diamagnetic susceptibility gives a negative value, same as the other data
+- Brain mask is obtained by using MEDI toolbox implementation of FSL's BET on the 1st echo magnitude image, using default setting -f 0.5 -g 0
+- (Bipolar readout data only) Bipolar readout correction based on (Li et al., 2015) using the implementation provided with SEPIA.
+
