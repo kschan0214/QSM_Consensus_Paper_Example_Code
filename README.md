@@ -51,7 +51,7 @@ In this step, we are going to perform the following procedures:
 1. Unzip the DICOM images to a new directory called 'raw' at the same location as the DICOM zip file.
 2. Rename the ditectory structure so that all data are stored in a more 'standardised' structure
 
-Open a command (terminal) window. Then go to 'QSM_Consensus_Paper_Example_Code/From_DICOM_zip_file_to_SEPIA_ready/' and run the shell script 'Preparation_01_rename_received_data.sh':
+Open a command (terminal) window. Then go to 'QSM_Consensus_Paper_Example_Code/From_DICOM_zip_file_to_SEPIA_ready/' and run the shell script [Preparation_01_rename_received_data.sh](https://github.com/kschan0214/QSM_Consensus_Paper_Example_Code/blob/main/From_DICOM_zip_file_to_SEPIA_ready/Preparation_01_rename_received_data.sh):
 
 `sh Preparation_01_rename_received_data.sh`
 
@@ -65,7 +65,7 @@ In this step, we are going to perform the following procedure:
 
 1. Convert the DICOM images to compressed NIfTI format (.nii.gz). The NIfTI data will be stored in a new directory called 'converted' at the same location as 'raw'
 
-Run the shell script 'Preparation_02_convert_dicom2nii.sh'
+Run the shell script [Preparation_02_convert_dicom2nii.sh](https://github.com/kschan0214/QSM_Consensus_Paper_Example_Code/blob/main/From_DICOM_zip_file_to_SEPIA_ready/Preparation_02_convert_dicom2nii.sh)
 
 `sh Preparation_02_convert_dicom2nii.sh`
 
@@ -83,7 +83,7 @@ In this step, we are going to perform the following procedure:
 - For **GE** and **SIEMENS**, different readout methods are identified using the acquisition tag: **acq-<Bipolar|Monopolar>**;
 - For **PHILIPS**, the normalisation method is also printed on the acquisition tag, i.e., **acq-<BipolarCLEAR|BipolarSYNERGY|MonopolarCLEAR|MonopolarSYNERGY>**
 
-Open Matlab. Then run the Matlab script 'Preparation_03_rename_to_bids_format.m'
+Open Matlab. Then run the Matlab script [Preparation_03_rename_to_bids_format.m](https://github.com/kschan0214/QSM_Consensus_Paper_Example_Code/blob/main/From_DICOM_zip_file_to_SEPIA_ready/Preparation_03_rename_to_bids_format.m)
 
 Once the processing is done, you should be able to see the following content:
 
@@ -97,7 +97,7 @@ For PHILIPS and SIEMENS data, the data is already compatible to SEPIA input form
 2. Obtaining header info (e.g., B0 direction and TE) from NIfTI header and JSON sidecar files and saving as SEPIA's header format
 3. (GE only) Correcting inter-slice opposite polarity on real and imaginary images and exporting phase images from the corrected real/imaginary data
 
-Run the Matlab script 'Preparation_04_prepare_for_sepia.m'
+Run the Matlab script [Preparation_04_prepare_for_sepia.m](https://github.com/kschan0214/QSM_Consensus_Paper_Example_Code/blob/main/From_DICOM_zip_file_to_SEPIA_ready/Preparation_04_prepare_for_sepia.m)
 
 Once the processing is done, you should be able to see the following content:
 
