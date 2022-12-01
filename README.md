@@ -29,7 +29,7 @@ This section describes all procedures performed to prepare SEPIA-ready data from
 
 ### Data preparation
 
-Step 0: Download the DICOM data from online repository and unzip it. 
+#### Step 0: Download the DICOM data from online repository and unzip it. 
 
 You should see there is a compressed file, which contains all DICOM images, and a folder that contains all the scripts used for the processing.
 
@@ -60,9 +60,9 @@ In this step, we are going to perform the following procedure:
 
 1. Rename the compressed NIfTI files according to BIDS format. The naming strategy as follows:
 
-- Vendors are identified using the session tag: ses-<GE|PHILIPS|SIEMENS>
-- For GE and SIEMENS, different readout methods are identified using the acquisition tag: acq-<Bipolar|Monopolar>;
-- For PHILIPS, the normalisation method is also printed on the acquisition tag, i.e., acq-<BipolarCLEAR|BipolarSYNERGY|MonopolarCLEAR|MonopolarSYNERGY>
+- Vendors are identified using the session tag: **ses-<GE|PHILIPS|SIEMENS>**
+- For GE and SIEMENS, different readout methods are identified using the acquisition tag: **acq-<Bipolar|Monopolar>**;
+- For PHILIPS, the normalisation method is also printed on the acquisition tag, i.e., **acq-<BipolarCLEAR|BipolarSYNERGY|MonopolarCLEAR|MonopolarSYNERGY>**
 
 Open Matlab. Then run the Matlab script 'Preparation_02_rename_to_bids_format.m'
 
@@ -162,3 +162,11 @@ The data were processed using the following set-up
 - Brain mask is obtained by using MEDI toolbox implementation of FSL's BET on the 1st echo magnitude image, using default setting -f 0.5 -g 0
 - (Bipolar readout data only) Bipolar readout correction based on (Li et al., 2015) using the implementation provided with SEPIA.
 
+#### Step 2: Total field estimation and echo combination
+
+| Parameters | Values | Remark |
+| Echo phase combination | ROMEO total field calculation |  (Dymerska et al., 2020) |
+| MCPC-3D-S phase offset correction | On |  |
+| Mask for unwrapping | SEPIA mask | FSL's BET mask |
+| Using ROMEO Mask in SEPIA | Off |  |
+| Exclude voxel using relative residual with threshold | 0.3 (applied on weighting map) | See <https://sepia-documentation.readthedocs.io/en/latest/method/weightings.html> |
