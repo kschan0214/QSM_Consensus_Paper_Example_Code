@@ -2,7 +2,14 @@
 
 ## Introduction  
 
-The example codes implemented QSM reconstruction using the SEPIA framework. Before you getting started, please make sure you have the following setup ready in your computer:
+The example codes implemented QSM reconstruction using the SEPIA framework. The example codes can be divided into two main sections:
+
+1. (Optional) Data preparation (including shell scripts and Matlab scripts)
+2. QSM recon pipeline (Matlab scripts only)
+
+All scripts were tested in the two Unix enrivonments: (1) Linux CentOS 7 and (2) macOS 12.6. For Microsoft Windows users, you might need to explore an alternative way to run the shell scripts for the data preparation part, e.g. Gitbash, Cygwin or WLS (Unfortunately I do not have access to validate the shell scripts on Windows).
+
+Before you getting started, please make sure you have the following setup ready in your computer:
 
 ### Environment
 
@@ -48,6 +55,10 @@ Open a command (terminal) window. Then go to 'QSM_Consensus_Paper_Example_Code/F
 
 `sh Preparation_01_rename_received_data.sh`
 
+Once the processing is done, you should be able to see the following content:
+
+![data_preparation_step1](https://github.com/kschan0214/QSM_Consensus_Paper_Example_Code/blob/main/docs/Figures/data_prep_step1.png?raw=true)
+
 #### Step 2: Convert DICOM images into NIfTI format
 
 In this step, we are going to perform the following procedure:
@@ -57,6 +68,10 @@ In this step, we are going to perform the following procedure:
 Run the shell script 'Preparation_02_convert_dicom2nii.sh'
 
 `sh Preparation_02_convert_dicom2nii.sh`
+
+Once the processing is done, you should be able to see the following content:
+
+![data_preparation_step2](https://github.com/kschan0214/QSM_Consensus_Paper_Example_Code/blob/main/docs/Figures/data_prep_step2.png?raw=true)
 
 #### Step 3: Rename the files according to the BIDS format
 
@@ -70,6 +85,10 @@ In this step, we are going to perform the following procedure:
 
 Open Matlab. Then run the Matlab script 'Preparation_03_rename_to_bids_format.m'
 
+Once the processing is done, you should be able to see the following content:
+
+![data_preparation_step3](https://github.com/kschan0214/QSM_Consensus_Paper_Example_Code/blob/main/docs/Figures/data_prep_step3.png?raw=true)
+
 #### Step 4: Prepare data for SEPIA
 
 For PHILIPS and SIEMENS data, the data is already compatible to SEPIA input format (a directory containing magnitude multi-echo files + phase multi-echo files + JSON multi-echo files). However, for GE data, the complex-valued data is stored in real/imaginary format, which is currently not yet supported by SEPIA. To demonstrate the QSM recon for all data is a uniform way, the following procedures are applied: 
@@ -79,6 +98,10 @@ For PHILIPS and SIEMENS data, the data is already compatible to SEPIA input form
 3. (GE only) Correcting inter-slice opposite polarity on real and imaginary images and exporting phase images from the corrected real/imaginary data
 
 Run the Matlab script 'Preparation_04_prepare_for_sepia.m'
+
+Once the processing is done, you should be able to see the following content:
+
+![data_preparation_step4](https://github.com/kschan0214/QSM_Consensus_Paper_Example_Code/blob/main/docs/Figures/data_prep_step4.png?raw=true)
 
 Now the data are ready for QSM recon in SEPIA!
 
