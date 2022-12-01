@@ -19,7 +19,6 @@ export work_dir=$(pwd)/../../
 ##### End of user input #####
 
 export raw_dir=${work_dir}raw/
-export scripts_dir=${work_dir}scripts/
 export converted_dir=${work_dir}converted/
 
 vendor=( 'GE' 'PHILIPS' 'SIEMENS' )
@@ -30,6 +29,7 @@ echo ${curr_vendor}
 
 ## loop through all sub-directories for all vendors
 for sub_dir in ${raw_dir}$curr_vendor/*; do
+
 ## get basename of sub-directory without full path
 sub_dir_name=`basename ${sub_dir}`
 sub_dir_name=${sub_dir_name}
@@ -39,6 +39,7 @@ echo ${sub_dir_name}
 out_dir=${converted_dir}${curr_vendor}/${sub_dir_name}/GRE
 mkdir -p ${out_dir}
 echo $out_dir
+
 ## convert DICOM to compressed NIfTI
 dcm2niix -z y -o ${out_dir} ${sub_dir}
 
