@@ -27,13 +27,15 @@ Data are available from three vendors: GE, Siemens and Philips. For each vendor,
 
 This section describes all procedures performed to prepare SEPIA-ready data from the DICOM images.
 
-**Remark: The following steps only required if you want to start the processing using the ‘QSM_CONSENSIS_DATA.zip’ file from a clean directory.**
+**Remark: You may skip this section if you are not interested in converting DICOM data to BIDS compatible format for SEPIA**
 
 ### Data preparation
 
 #### Step 0: Download the DICOM data from online repository and unzip it. 
 
-You should see there is a compressed file, which contains all DICOM images, and a folder that contains all the scripts used for the processing.
+Once you uncompressed the file, you should see there is a compressed file, which contains all DICOM images, and a folder that contains all the scripts used for the processing.
+
+![data_preparation_step0](https://github.com/kschan0214/QSM_Consensus_Paper_Example_Code/blob/main/docs/Figures/data_prep_step0.png?raw=true)
 
 #### Step 1: Unzip the received data and reformat the directory structure
 
@@ -42,9 +44,9 @@ In this step, we are going to perform the following procedures:
 1. Unzip the DICOM images to a new directory called 'raw' at the same location as the DICOM zip file.
 2. Rename the ditectory structure so that all data are stored in a more 'standardised' structure
 
-Open a command (terminal) window. Then go to 'QSM_Consensus_Paper_Example_Code/From_DICOM_zip_file_to_SEPIA_ready/' and run the shell script 'Preparation_00_rename_received_data.sh':
+Open a command (terminal) window. Then go to 'QSM_Consensus_Paper_Example_Code/From_DICOM_zip_file_to_SEPIA_ready/' and run the shell script 'Preparation_01_rename_received_data.sh':
 
-`sh Preparation_00_rename_received_data.sh`
+`sh Preparation_01_rename_received_data.sh`
 
 #### Step 2: Convert DICOM images into NIfTI format
 
@@ -52,9 +54,9 @@ In this step, we are going to perform the following procedure:
 
 1. Convert the DICOM images to compressed NIfTI format (.nii.gz). The NIfTI data will be stored in a new directory called 'converted' at the same location as 'raw'
 
-Run the shell script 'Preparation_01_convert_dicom2nii.sh'
+Run the shell script 'Preparation_02_convert_dicom2nii.sh'
 
-`sh Preparation_00_rename_received_data.sh`
+`sh Preparation_02_convert_dicom2nii.sh`
 
 #### Step 3: Rename the files according to the BIDS format
 
@@ -66,7 +68,7 @@ In this step, we are going to perform the following procedure:
 - For **GE** and **SIEMENS**, different readout methods are identified using the acquisition tag: **acq-<Bipolar|Monopolar>**;
 - For **PHILIPS**, the normalisation method is also printed on the acquisition tag, i.e., **acq-<BipolarCLEAR|BipolarSYNERGY|MonopolarCLEAR|MonopolarSYNERGY>**
 
-Open Matlab. Then run the Matlab script 'Preparation_02_rename_to_bids_format.m'
+Open Matlab. Then run the Matlab script 'Preparation_03_rename_to_bids_format.m'
 
 #### Step 4: Prepare data for SEPIA
 
@@ -76,7 +78,7 @@ For PHILIPS and SIEMENS data, the data is already compatible to SEPIA input form
 2. Obtaining header info (e.g., B0 direction and TE) from NIfTI header and JSON sidecar files and saving as SEPIA's header format
 3. (GE only) Correcting inter-slice opposite polarity on real and imaginary images and exporting phase images from the corrected real/imaginary data
 
-Run the Matlab script 'Preparation_03_prepare_for_sepia.m'
+Run the Matlab script 'Preparation_04_prepare_for_sepia.m'
 
 Now the data are ready for QSM recon in SEPIA!
 
@@ -88,11 +90,11 @@ The data should be organised in the following way after the above operations
   QSM_consensus_paper/
     |-- converted                               % dcm2niix output
     |   |-- GE
-    |   |   |-- Bipolar
-    |   |   `-- Monopolar
+    |   |   |-- Bipolar                         % Bipolar readout acquisition
+    |   |   `-- Monopolar                       % Monopolar readout acquisition
     |   |-- PHILIPS
-    |   |   |-- Bipolar_CLEAR
-    |   |   |-- Bipolar_SYNERGY
+    |   |   |-- Bipolar_CLEAR                   % with CLEAR normalisation
+    |   |   |-- Bipolar_SYNERGY                 % with SYNERGY normalisation
     |   |   |-- Monopolar_CLEAR
     |   |   `-- Monopolar_SYNERGY
     |   `-- SIEMENS
@@ -106,35 +108,29 @@ The data should be organised in the following way after the above operations
     |   |-- GE
     |   |   |-- Bipolar
     |   |   |   `-- GRE
-    |   |   |       `-- Pipeline_Standard       % Standard reconstruction output
+    |   |   |       |-- Pipeline_Standard       % Standard reconstruction output
     |   |   |       |-- Pipeline_Alternative1   % Dipole inversion alternative 1 output
     |   |   |       `-- Pipeline_Alternative2   % Dipole inversion alternative 2 output
     |   |   `-- Monopolar
     |   |-- PHILIPS
     |   `-- SIEMENS
-    |-- protocols     % Protocol text files
-    |-- raw     % DICOM images
-    |   |-- GE
-    |   |   |-- Bipolar             % Bipolar readout acquisition
-    |   |   |   `-- GRE
-    |   |   `-- Monopolar           % Monopolar readout acquisition
-    |   |-- PHILIPS
-    |   |   |-- Bipolar_CLEAR       % with CLEAR normalisation
-    |   |   |-- Bipolar_SYNERGY     % with SYNERGY normalisation
-    |   |   |-- Monopolar_CLEAR
-    |   |   `-- Monopolar_SYNERGY
-    |   `-- SIEMENS
-    |       |-- Bipolar
-    |       `-- Monopolar
-    `-- QSM_Consensus_Paper_Example_Code % containing all the scripts
-        |-- SEPIA_Standard_Pipeline         % SEPIA pipeline config files for Standard
-        |-- SEPIA_Alternative1_Pipeline     % SEPIA pipeline config files for Alternative 1 (MEDI)
-        `-- SEPIA_Alternative2_Pipeline     % SEPIA pipeline config files for Alternative 2 (FANSI)
+    |-- protocols                               % Protocol text files
+    |-- raw                                     % DICOM images
+    `-- QSM_Consensus_Paper_Example_Code        % containing all the scripts
+        |-- SEPIA_Standard_Pipeline             % SEPIA pipeline config files for Standard
+        |-- SEPIA_Alternative1_Pipeline         % SEPIA pipeline config files for Alternative 1 (MEDI)
+        `-- SEPIA_Alternative2_Pipeline         % SEPIA pipeline config files for Alternative 2 (FANSI)
 ```
 
 ## QSM reconstruction pipeline
 
-This section describes all the QSM reconstruction processing steps performed **in SEPIA**. All the processing steps are specified in the SEPIA pipeline configuration files, which are in the sub-directories of the script directory: QSM_Consensus_Paper_Example_Code/SEPIA_Standard_Pipeline/’, QSM_Consensus_Paper_Example_Code/SEPIA_Alternative1_Pipeline/’ and QSM_Consensus_Paper_Example_Code/SEPIA_Alternative2_pipeline/’, corresponding to the three processing pipelines demonstrated as follows.
+This section describes all the QSM reconstruction processing steps performed in SEPIA. **All the processing steps are specified in the SEPIA pipeline configuration files**, which are in the sub-directories of the script directory:
+
+- 'QSM_Consensus_Paper_Example_Code/SEPIA_Standard_Pipeline/',
+- 'QSM_Consensus_Paper_Example_Code/SEPIA_Alternative1_Pipeline/' and
+- 'QSM_Consensus_Paper_Example_Code/SEPIA_Alternative2_pipeline/'
+
+corresponding to the three processing pipelines demonstrated as follows.
 
 ### Environment and dependencies
 
@@ -238,9 +234,9 @@ The data were processed using the following set-up
 
 ## References
 
-Dymerska, B., Eckstein, K., Bachrata, B., Siow, B., Trattnig, S., Shmueli, K., Robinson, S.D., 2020. Phase unwrapping with a rapid opensource minimum spanning tree algorithm (ROMEO). Magnet Reson Med. <https://doi.org/10.1002/mrm.28563>
+Dymerska, B., Eckstein, K., Bachrata, B., Siow, B., Trattnig, S., Shmueli, K., Robinson, S.D., 2020. Phase unwrapping with a rapid opensource minimum spanning tree algorithm (ROMEO). Magnetic resonance in medicine <https://doi.org/10.1002/mrm.28563>
 
-Karsa, A., Punwani, S., Shmueli, K., 2020. An optimized and highly repeatable MRI acquisition and processing pipeline for quantitative susceptibility mapping in the head-and-neck region. Magnet Reson Med. <https://doi.org/10.1002/mrm.28377>
+Karsa, A., Punwani, S., Shmueli, K., 2020. An optimized and highly repeatable MRI acquisition and processing pipeline for quantitative susceptibility mapping in the head-and-neck region. Magnetic resonance in medicine <https://doi.org/10.1002/mrm.28377>
 
 Li, J., Chang, S., Liu, T., Jiang, H., Dong, F., Pei, M., Wang, Q., Wang, Y., 2015. Phase-corrected bipolar gradients in multi-echo gradient-echo sequences for quantitative susceptibility mapping. Magma (New York, N.Y.) 28, 347–355. <https://doi.org/10.1007/s10334-014-0470-3>
 
