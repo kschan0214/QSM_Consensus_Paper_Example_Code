@@ -55,6 +55,8 @@ Open a command (terminal) window. Then go to 'QSM_Consensus_Paper_Example_Code/F
 
 `sh Preparation_01_rename_received_data.sh`
 
+![data_preparation_step1_shell](https://github.com/kschan0214/QSM_Consensus_Paper_Example_Code/blob/main/docs/Figures/data_prep_step1_shell.png?raw=true)
+
 Once the processing is done, you should be able to see the following content:
 
 ![data_preparation_step1](https://github.com/kschan0214/QSM_Consensus_Paper_Example_Code/blob/main/docs/Figures/data_prep_step1.png?raw=true)
@@ -68,6 +70,8 @@ In this step, we are going to perform the following procedure:
 Run the shell script [Preparation_02_convert_dicom2nii.sh](https://github.com/kschan0214/QSM_Consensus_Paper_Example_Code/blob/main/From_DICOM_zip_file_to_SEPIA_ready/Preparation_02_convert_dicom2nii.sh)
 
 `sh Preparation_02_convert_dicom2nii.sh`
+
+![data_preparation_step2_shell](https://github.com/kschan0214/QSM_Consensus_Paper_Example_Code/blob/main/docs/Figures/data_prep_step2_shell.png?raw=true)
 
 Once the processing is done, you should be able to see the following content:
 
