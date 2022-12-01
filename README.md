@@ -63,8 +63,8 @@ In this step, we are going to perform the following procedure:
 1. Rename the compressed NIfTI files according to BIDS format. The naming strategy as follows:
 
 - Vendors are identified using the session tag: **ses-<GE|PHILIPS|SIEMENS>**
-- For GE and SIEMENS, different readout methods are identified using the acquisition tag: **acq-<Bipolar|Monopolar>**;
-- For PHILIPS, the normalisation method is also printed on the acquisition tag, i.e., **acq-<BipolarCLEAR|BipolarSYNERGY|MonopolarCLEAR|MonopolarSYNERGY>**
+- For **GE** and **SIEMENS**, different readout methods are identified using the acquisition tag: **acq-<Bipolar|Monopolar>**;
+- For **PHILIPS**, the normalisation method is also printed on the acquisition tag, i.e., **acq-<BipolarCLEAR|BipolarSYNERGY|MonopolarCLEAR|MonopolarSYNERGY>**
 
 Open Matlab. Then run the Matlab script 'Preparation_02_rename_to_bids_format.m'
 
@@ -202,7 +202,7 @@ The data were processed using the following set-up
 | Parameters | Values | Remark |
 | ----------- | ----------- | ----------- |
 | Method | MEDI | Liu et al., 2011 |
-| Regularisation parameter (lambda) | 1000 |  |
+| Regularisation parameter (lambda) | 2000 |  |
 | Method of data weighting | 1 |  |
 | Percentage of voxels considered to be edges | 90 |  |
 | Array size for zero padding | [0 0 0]] |  |
