@@ -21,6 +21,8 @@ The example codes implemented QSM reconstruction using the SEPIA framework. Befo
 
 Data are available from three vendors: GE, Siemens and Philips. For each vendor, both monopolar and bipolar readout strategies were used to acquire the data. The data from GE and Siemens are not pre-scan normalized, while the Philips data have two normalization methods applied.
 
+![data_availability](https://github.com/kschan0214/QSM_Consensus_Paper_Example_Code/blob/main/docs/Figures/Data_availability.png?raw=true)
+
 ## Data preparation and organization
 
 This section describes all procedures performed to prepare SEPIA-ready data from the DICOM images.
@@ -231,6 +233,8 @@ The data were processed using the following set-up
 | Reference tissue | Brain mask |  |
 
 ### Example results
+
+![example_results](https://github.com/kschan0214/QSM_Consensus_Paper_Example_Code/blob/main/docs/Figures/standard_chimap.png?raw=true)
 
 ## References
 
