@@ -168,7 +168,7 @@ The data were processed using the following set-up
 | MCPC-3D-S phase offset correction | On |  |
 | Mask for unwrapping | SEPIA mask | FSL's BET mask |
 | Using ROMEO Mask in SEPIA | Off |  |
-| Exclude voxel using relative residual with threshold | 0.3 (applied on weighting map) | See <https://sepia-documentation.readthedocs.io/en/latest/method/weightings.html> |
+| Exclude voxel using relative residual with threshold | 0.3 (applied on weighting map) | See [SEPIA's documentation](https://sepia-documentation.readthedocs.io/en/latest/method/weightings.html) |
 
 #### Step 3: Background field removal
 
@@ -234,19 +234,18 @@ The data were processed using the following set-up
 
 ## References
 
-Dymerska, B., Eckstein, K., Bachrata, B., Siow, B., Trattnig, S., Shmueli, K., Robinson, S.D., 2020. Phase unwrapping with a rapid opensource minimum spanning tree algorithm (ROMEO). Magnetic resonance in medicine <https://doi.org/10.1002/mrm.28563>
+[Dymerska, B., Eckstein, K., Bachrata, B., Siow, B., Trattnig, S., Shmueli, K., Robinson, S.D., 2020. Phase unwrapping with a rapid opensource minimum spanning tree algorithm (ROMEO). Magnetic resonance in medicine](https://doi.org/10.1002/mrm.28563)
 
-Karsa, A., Punwani, S., Shmueli, K., 2020. An optimized and highly repeatable MRI acquisition and processing pipeline for quantitative susceptibility mapping in the head-and-neck region. Magnetic resonance in medicine <https://doi.org/10.1002/mrm.28377>
+[Karsa, A., Punwani, S., Shmueli, K., 2020. An optimized and highly repeatable MRI acquisition and processing pipeline for quantitative susceptibility mapping in the head-and-neck region. Magnetic resonance in medicine](https://doi.org/10.1002/mrm.28377)
 
-Li, J., Chang, S., Liu, T., Jiang, H., Dong, F., Pei, M., Wang, Q., Wang, Y., 2015. Phase-corrected bipolar gradients in multi-echo gradient-echo sequences for quantitative susceptibility mapping. Magma (New York, N.Y.) 28, 347–355. <https://doi.org/10.1007/s10334-014-0470-3>
+[Li, J., Chang, S., Liu, T., Jiang, H., Dong, F., Pei, M., Wang, Q., Wang, Y., 2015. Phase-corrected bipolar gradients in multi-echo gradient-echo sequences for quantitative susceptibility mapping. Magma (New York, N.Y.) 28, 347–355.](https://doi.org/10.1007/s10334-014-0470-3)
 
-Li, W., Wu, B., Liu, C., 2011. Quantitative susceptibility mapping of human brain reflects spatial variation in tissue composition. Neuroimage 55, 1645–1656. <https://doi.org/10.1016/j.neuroimage.2010.11.088>
+[Li, W., Wu, B., Liu, C., 2011. Quantitative susceptibility mapping of human brain reflects spatial variation in tissue composition. Neuroimage 55, 1645–1656.](https://doi.org/10.1016/j.neuroimage.2010.11.088)
 
-Liu, T., Liu, J., Rochefort, L. de, Spincemaille, P., Khalidov, I., Ledoux, J.R., Wang, Y., 2011. Morphology enabled dipole inversion (MEDI) from a single-angle acquisition: Comparison with COSMOS in human brain imaging. Magnetic resonance in medicine 66, 777–783. <https://doi.org/10.1002/mrm.22816>
+[Liu, T., Liu, J., Rochefort, L. de, Spincemaille, P., Khalidov, I., Ledoux, J.R., Wang, Y., 2011. Morphology enabled dipole inversion (MEDI) from a single-angle acquisition: Comparison with COSMOS in human brain imaging. Magnetic resonance in medicine 66, 777–783.](https://doi.org/10.1002/mrm.22816)
 
-Milovic, C., Bilgic, B., Zhao, B., Acosta-Cabronero, J., Tejos, C., 2018. Fast nonlinear susceptibility inversion with variational regularization. Magnetic resonance in medicine 80, 814–821. <https://doi.org/10.1002/mrm.27073>
+[Milovic, C., Bilgic, B., Zhao, B., Acosta-Cabronero, J., Tejos, C., 2018. Fast nonlinear susceptibility inversion with variational regularization. Magnetic resonance in medicine 80, 814–821.](https://doi.org/10.1002/mrm.27073)
 
-Milovic, C., Bilgic, B., Zhao, B., Langkammer, C., Tejos, C., Cabronero, J.A., 2019. Weak-harmonic regularization for quantitative susceptibility mapping. Magnetic resonance in medicine 81, 1399–1411. <https://doi.org/10.1002/mrm.27483>
+[Milovic, C., Bilgic, B., Zhao, B., Langkammer, C., Tejos, C., Cabronero, J.A., 2019. Weak-harmonic regularization for quantitative susceptibility mapping. Magnetic resonance in medicine 81, 1399–1411.](https://doi.org/10.1002/mrm.27483)
 
-Schweser, F., Deistung, A., Sommer, K., Reichenbach, J.R., 2013. Toward online reconstruction of quantitative susceptibility maps: superfast dipole inversion. Magnetic resonance in medicine 69, 1582–1594. <https://doi.org/10.1002/mrm.24405>
-
+[Schweser, F., Deistung, A., Sommer, K., Reichenbach, J.R., 2013. Toward online reconstruction of quantitative susceptibility maps: superfast dipole inversion. Magnetic resonance in medicine 69, 1582–1594.](https://doi.org/10.1002/mrm.24405)
