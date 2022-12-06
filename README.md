@@ -2,6 +2,8 @@
 
 ## Introduction  
 
+*A similar document can also be found in the supplementary material of the paper and the scripts are also shared with the data. This repository serves as  an on-going site to provide update on the QSM recon processing with the concensus paper data.*
+
 The example codes implemented QSM reconstruction using the SEPIA framework. The example codes can be divided into two main sections:
 
 1. (Optional) Data preparation (including shell scripts and Matlab scripts)
