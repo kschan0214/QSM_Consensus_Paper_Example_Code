@@ -1,5 +1,7 @@
 # Example Codes for QSM consensus data processing
 
+**This repositroy is still WORK-IN-PROGRESS.**
+
 ## Introduction  
 
 *A similar document can also be found in the supplementary material of the paper and the scripts are also shared with the data. This repository serves as  an on-going site to provide update on the QSM recon processing with the concensus paper data.*
@@ -263,9 +265,9 @@ The data were processed using the following set-up
 
 ## References
 
-[Dymerska, B., Eckstein, K., Bachrata, B., Siow, B., Trattnig, S., Shmueli, K., Robinson, S.D., 2020. Phase unwrapping with a rapid opensource minimum spanning tree algorithm (ROMEO). Magnetic resonance in medicine](https://doi.org/10.1002/mrm.28563)
+[Dymerska, B., Eckstein, K., Bachrata, B., Siow, B., Trattnig, S., Shmueli, K., Robinson, S.D., 2021. Phase unwrapping with a rapid opensource minimum spanning tree algorithm (ROMEO). Magnetic resonance in medicine 85, 2294–2308.](https://doi.org/10.1002/mrm.28563)
 
-[Karsa, A., Punwani, S., Shmueli, K., 2020. An optimized and highly repeatable MRI acquisition and processing pipeline for quantitative susceptibility mapping in the head-and-neck region. Magnetic resonance in medicine](https://doi.org/10.1002/mrm.28377)
+[Karsa, A., Punwani, S., Shmueli, K., 2020. An optimized and highly repeatable MRI acquisition and processing pipeline for quantitative susceptibility mapping in the head-and-neck region. Magnetic resonance in medicine 84, 3206–3222.](https://doi.org/10.1002/mrm.28377)
 
 [Li, J., Chang, S., Liu, T., Jiang, H., Dong, F., Pei, M., Wang, Q., Wang, Y., 2015. Phase-corrected bipolar gradients in multi-echo gradient-echo sequences for quantitative susceptibility mapping. Magma (New York, N.Y.) 28, 347–355.](https://doi.org/10.1007/s10334-014-0470-3)
 
