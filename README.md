@@ -118,39 +118,38 @@ Now the data are ready for QSM recon in SEPIA!
 The data should be organised in the following way after the above operations
 
 ```
-  QSM_consensus_paper/
-    |-- converted                               % dcm2niix output
-    |   |-- GE
-    |   |   |-- Bipolar                         % Bipolar readout acquisition
-    |   |   `-- Monopolar                       % Monopolar readout acquisition
-    |   |-- PHILIPS
-    |   |   |-- Bipolar_CLEAR                   % with CLEAR normalisation
-    |   |   |-- Bipolar_SYNERGY                 % with SYNERGY normalisation
-    |   |   |-- Monopolar_CLEAR
-    |   |   `-- Monopolar_SYNERGY
-    |   `-- SIEMENS
-    |       |-- Bipolar
-    |       `-- Monopolar
-    |-- derivatives                             % directory contains all derived output
-    |   |-- ANTs
-    |   `-- Coregistration
-    |       `-- Transform                       % rigid body transform matrices to common (MNI) space
-    | `-- SEPIA                                 % SEPIA output
-    |   |-- GE
-    |   |   |-- Bipolar
-    |   |   |   `-- GRE
-    |   |   |       |-- Pipeline_Standard       % Standard reconstruction output
-    |   |   |       |-- Pipeline_Alternative1   % Dipole inversion alternative 1 output
-    |   |   |       `-- Pipeline_Alternative2   % Dipole inversion alternative 2 output
-    |   |   `-- Monopolar
-    |   |-- PHILIPS
-    |   `-- SIEMENS
-    |-- protocols                               % Protocol text files
-    |-- raw                                     % DICOM images
-    `-- QSM_Consensus_Paper_Example_Code        % containing all the scripts
-        |-- SEPIA_Standard_Pipeline             % SEPIA pipeline config files for Standard
-        |-- SEPIA_Alternative1_Pipeline         % SEPIA pipeline config files for Alternative 1 (MEDI)
-        `-- SEPIA_Alternative2_Pipeline         % SEPIA pipeline config files for Alternative 2 (FANSI)
+  QSM_Consensus_Paper_Example_DICOM_Code/
+  |-- QSM_CONSENSUS_DATA.zip                      % zip file containing all DICOM images
+  |-- protocols                                   % Protocol text files
+  |-- QSM_Consensus_Paper_Example_Code            % containing all the scripts
+  |   |-- From_DICOM_zip_file_to_SEPIA_ready      % Scripts for preparing QSM_CONSENSUS_DATA.zip to NIfTI images
+  |   |-- SEPIA_Standard_Pipeline                 % SEPIA pipeline config files for Standard
+  |   |-- SEPIA_Alternative1_Pipeline             % SEPIA pipeline config files for Alternative 1 (MEDI)
+  |   `-- SEPIA_Alternative2_Pipeline             % SEPIA pipeline config files for Alternative 2 (FANSI)
+  |-- raw                                         % folder containing all DICOM images, sorted by vendors
+  |-- converted                                   % dcm2niix output
+  |   |-- GE
+  |   |   |-- Bipolar                             % Bipolar readout acquisition
+  |   |   `-- Monopolar                           % Monopolar readout acquisition
+  |   |-- PHILIPS
+  |   |   |-- Bipolar_CLEAR                       % with CLEAR normalisation
+  |   |   |-- Bipolar_SYNERGY                     % with SYNERGY normalisation
+  |   |   |-- Monopolar_CLEAR
+  |   |   `-- Monopolar_SYNERGY
+  |   `-- SIEMENS
+  |       |-- Bipolar
+  |       `-- Monopolar
+  `-- derivatives                                 % directory contains all derived output
+      `-- SEPIA
+          |-- GE
+          |   |-- Bipolar
+          |   |   `-- GRE
+          |   |       |-- Pipeline_Standard       % Standard reconstruction output
+          |   |       |-- Pipeline_Alternative1   % Dipole inversion alternative 1 output
+          |   |       `-- Pipeline_Alternative2   % Dipole inversion alternative 2 output
+          |   `-- Monopolar
+          |-- PHILIPS
+          `-- SIEMENS
 ```
 
 ## QSM reconstruction pipeline
