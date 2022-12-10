@@ -4,7 +4,7 @@
 
 ## Introduction  
 
-*A similar document can also be found in the supplementary material of the paper and the scripts are also shared with the data. This repository serves as  an on-going site to provide update on the QSM recon processing with the concensus paper data.*
+*This document can also be found in the supplementary material of the paper and the scripts are also shared with the data. This repository serves as an on-going site to provide update and version control on the QSM recon processing with the concensus paper data.*
 
 The example codes implemented QSM reconstruction using the SEPIA framework. The example codes can be divided into two main sections:
 
@@ -21,7 +21,7 @@ Before you getting started, please make sure you have the following setup ready 
 
 ### Dependencies
 
-- [dcm2niix](https://github.com/rordenlab/dcm2niix)
+- [dcm2niix](https://github.com/rordenlab/dcm2niix)(version 1.0.20220720)
 - [SEPIA](https://github.com/kschan0214/sepia/releases/tag/v1.2.1) (v1.2.1)
 - [MRITOOLS](https://github.com/korbinian90/CompileMRI.jl/releases/tag/v3.5.6) (v3.5.6)
 - [MRI susceptibility calculation methods](https://xip.uclb.com/product/mri_qsm_tkd) (accessed 12 September 2019)
