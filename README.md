@@ -99,7 +99,7 @@ Once the processing is done, you should be able to see the following content:
 
 #### Step 4: Prepare data for SEPIA
 
-For PHILIPS and SIEMENS data, the data is already compatible to SEPIA input format (a directory containing magnitude multi-echo files + phase multi-echo files + JSON multi-echo files). However, for GE data, the complex-valued data is stored in real/imaginary format, which is currently not yet supported by SEPIA. To demonstrate the QSM recon for all data is a uniform way, the following procedures are applied: 
+For PHILIPS and SIEMENS data, the data is already compatible to SEPIA input format (a directory containing magnitude multi-echo files + phase multi-echo files + JSON multi-echo files). However, for GE data, the complex-valued data is stored in real/imaginary format, which is currently not yet supported by SEPIA. To demonstrate the QSM recon for all data in a uniform way, the following procedures are applied: 
 
 1. Combining individual multi-echo 3D volumes into a single 4D volume with TE in the 4th dimension
 2. Obtaining header info (e.g., B0 direction and TE) from NIfTI header and JSON sidecar files and saving as SEPIA's header format
@@ -231,7 +231,7 @@ The data were processed using the following set-up
 | Regularisation parameter (lambda) | 2000 |  |
 | Method of data weighting | 1 |  |
 | Percentage of voxels considered to be edges | 90 |  |
-| Array size for zero padding | [0 0 0]] |  |
+| Array size for zero padding | [0 0 0] |  |
 | Performing spherical mean value operator | On |  |
 | Radius of the spherical mean value operation | 5 | in voxel |
 | Performing modal error reduction through iterative tuning (MERIT) | On |  |
