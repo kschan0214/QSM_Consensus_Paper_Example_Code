@@ -22,8 +22,8 @@ Before you getting started, please make sure you have the following setup ready 
 ### Dependencies
 
 - [dcm2niix](https://github.com/rordenlab/dcm2niix)
-- [SEPIA](https://github.com/kschan0214/sepia/releases/tag/v1.2) (v1.2)
-- [MRITOOLS](https://github.com/korbinian90/CompileMRI.jl/releases/tag/v3.5.5) (v3.5.5)
+- [SEPIA](https://github.com/kschan0214/sepia/releases/tag/v1.2.1) (v1.2.1)
+- [MRITOOLS](https://github.com/korbinian90/CompileMRI.jl/releases/tag/v3.5.6) (v3.5.6)
 - [MRI susceptibility calculation methods](https://xip.uclb.com/product/mri_qsm_tkd) (accessed 12 September 2019)
 - [MEDI toolbox](http://pre.weill.cornell.edu/mri/pages/qsm.html) (release: 15th January 2020)
 - [FANSI toolbox](https://gitlab.com/cmilovic/FANSI-toolbox) (v3)
@@ -172,12 +172,12 @@ The data were processed using the following set-up
 
 #### Environment
 
-- Matlab R2022a (but the scripts are backwards compatible to early Matlab version from R2016b onwards)
+- Matlab R2021a (but the scripts are backwards compatible to early Matlab version from R2016b onwards)
 
 #### Dependencies
 
-- [SEPIA](https://github.com/kschan0214/sepia/releases/tag/v1.2) (v1.2)
-- [MRITOOLS](https://github.com/korbinian90/CompileMRI.jl/releases/tag/v3.5.5) (v3.5.5)
+- [SEPIA](https://github.com/kschan0214/sepia/releases/tag/v1.2.1) (v1.2.1)
+- [MRITOOLS](https://github.com/korbinian90/CompileMRI.jl/releases/tag/v3.5.6) (v3.5.6)
 - [MRI susceptibility calculation methods](https://xip.uclb.com/product/mri_qsm_tkd) (accessed 12 September 2019)
 - [MEDI toolbox](http://pre.weill.cornell.edu/mri/pages/qsm.html) (release: 15th January 2020)
 - [FANSI toolbox](https://gitlab.com/cmilovic/FANSI-toolbox) (v3)
