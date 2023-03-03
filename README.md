@@ -1,5 +1,7 @@
 # Example Codes for QSM consensus data processing
 
+Version: 0.2.0
+
 ## Introduction  
 
 *This document can also be found in the supplementary material of the paper and the scripts are also shared with the data. This repository serves as an on-going site to provide update and version control on the QSM recon processing with the concensus paper data.*
@@ -15,7 +17,7 @@ Before you getting started, please make sure you have the following setup ready 
 
 ### Environment
 
-- Matlab R2016b onwards
+- Matlab R2016b onwards (except R2022b)
 
 ### Dependencies
 
@@ -259,7 +261,14 @@ The data were processed using the following set-up
 
 ### Example results
 
-![example_results](https://github.com/kschan0214/QSM_Consensus_Paper_Example_Code/blob/main/docs/Figures/standard_chimap.png?raw=true)
+Standard pipeline
+![standard_results](https://github.com/kschan0214/QSM_Consensus_Paper_Example_Code/blob/main/docs/Figures/example_standard_v0p2.png)
+
+Alternative 1 (MEDI)
+![alternative1_results](https://github.com/kschan0214/QSM_Consensus_Paper_Example_Code/blob/main/docs/Figures/example_alternative1_v0p2.png)
+
+Alternative 2 (FANSI)
+![alternative2_results](https://github.com/kschan0214/QSM_Consensus_Paper_Example_Code/blob/main/docs/Figures/example_alternative2_v0p2.png)
 
 ## References
 
