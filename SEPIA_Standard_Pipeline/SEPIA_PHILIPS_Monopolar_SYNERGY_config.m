@@ -59,8 +59,8 @@ algorParam.bfr.refine_method = 'None' ;
 algorParam.bfr.refine_order = 2 ;
 algorParam.bfr.erode_before_radius = 1;
 algorParam.bfr.erode_radius = 0 ;
-algorParam.bfr.method = 'VSHARP (STI suite)';
-algorParam.bfr.radius = 12;
+algorParam.bfr.method = 'VSHARP' ;
+algorParam.bfr.radius = [12:-1:1] ;
 % QSM algorithm parameters
 algorParam.qsm.reference_tissue = 'Brain mask' ;
 algorParam.qsm.method = 'MRI Suscep. Calc.' ;

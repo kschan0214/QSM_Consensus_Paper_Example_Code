@@ -20,7 +20,7 @@ Before you getting started, please make sure you have the following setup ready 
 ### Dependencies
 
 - [dcm2niix](https://github.com/rordenlab/dcm2niix)(version 1.0.20220720)
-- [SEPIA](https://github.com/kschan0214/sepia/releases/tag/v1.2.1) (v1.2.1)
+- [SEPIA](https://github.com/kschan0214/sepia/releases/tag/v1.2.2.2) (v1.2.2.2)
 - [MRITOOLS](https://github.com/korbinian90/CompileMRI.jl/releases/tag/v3.5.6) (v3.5.6)
 - [MRI susceptibility calculation methods](https://xip.uclb.com/product/mri_qsm_tkd) (accessed 12 September 2019)
 - [MEDI toolbox](http://pre.weill.cornell.edu/mri/pages/qsm.html) (release: 15th January 2020)
@@ -170,11 +170,11 @@ The data were processed using the following set-up
 
 #### Environment
 
-- Matlab R2021a (but the scripts are backwards compatible to early Matlab version from R2016b onwards)
+- Matlab R2021a (but the scripts are compatible to Matlab versions from R2016b to R2022a)
 
 #### Dependencies
 
-- [SEPIA](https://github.com/kschan0214/sepia/releases/tag/v1.2.1) (v1.2.1)
+- [SEPIA](https://github.com/kschan0214/sepia/releases/tag/v1.2.2.2) (v1.2.2.2)
 - [MRITOOLS](https://github.com/korbinian90/CompileMRI.jl/releases/tag/v3.5.6) (v3.5.6)
 - [MRI susceptibility calculation methods](https://xip.uclb.com/product/mri_qsm_tkd) (accessed 12 September 2019)
 - [MEDI toolbox](http://pre.weill.cornell.edu/mri/pages/qsm.html) (release: 15th January 2020)
@@ -203,7 +203,8 @@ The data were processed using the following set-up
 | Parameters | Values | Remark |
 | ----------- | ----------- | ----------- |
 | Method | VSHARP | Li et al., 2011 |
-| Spherical mean value filtering size | 12 | in mm |
+| Maximum spherical mean value filtering size | 12 | in voxel |
+| Minimum spherical mean value filtering size | 1 | in voxel |
 | Remove residual B1 field | No |  |
 | Erode brain mask before BFR | 1 | in voxel |
 | Erode brain mask after BFR | 0 |  |
