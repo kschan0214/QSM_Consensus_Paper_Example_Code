@@ -1,13 +1,14 @@
-%% Preparation_02_rename_to_bids_format.m
+%% Preparation_03_rename_to_bids_format.m
 %
 % Objective:
 %   (1) Rename dcm2niix output to BIDS alike format
 % 
-% Compartibility: Matlab R2016b onward due to the use of contains.m
+% Compartibility: Matlab R2016b onwards due to the use of contains.m
 %
 % Kwok-shing Chan @ DCCN
 % kwokshing.chan@donders.ru.nl
 % Date created: 08 Sep 2022
+% Date modified: 03 April 2023 (v0.2.1)
 %
 %% Mandatory user input 
 % Specify the path of the top directory containing the DICOMs and scripts
@@ -88,7 +89,11 @@ for curr_vendor = vendor
             if ~strcmp(originalFilebasename,BIDsFilebasename)
                 movefile(fullfile(input_dir,[originalFilebasename '.json']),  fullfile(input_dir,[BIDsFilebasename '.json']));
                 movefile(fullfile(input_dir,[originalFilebasename '.nii.gz']),fullfile(input_dir,[BIDsFilebasename '.nii.gz']));
+                % Provide feedback
+                disp(['Renamed ' fullfile(input_dir,[originalFilebasename '.nii.gz']) ' to ' fullfile(input_dir,[BIDsFilebasename '.nii.gz'])]);
             end
         end
     end                
 end
+% Provide feedback
+disp('Executed Preparation_03_rename_to_bids_format.m without issue.');

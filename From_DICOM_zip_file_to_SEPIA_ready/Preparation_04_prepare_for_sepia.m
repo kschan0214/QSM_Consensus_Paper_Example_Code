@@ -1,15 +1,16 @@
-%% Preparation_02_rename_to_bids_format.m
+%% Preparation_04_prepare_for_sepia.m
 %
 % Objective:
 %   (1) Concatenate multiple 3D volumn multi-echo data into a 4D file
 %   (2) Create SEPIA header file for each dataset
 %
 % Dependencies: 
-%   (1) SEPIA v1.2.0
+%   (1) SEPIA v1.2.2.4
 %
 % Kwok-shing Chan @ DCCN
 % kwokshing.chan@donders.ru.nl
 % Date created: 08 Sep 2022
+% Date modified: 03 April 2023
 %
 %% Mandatory user input 
 % Specify the path of the top directory containing the DICOMs and scripts
@@ -113,6 +114,9 @@ for curr_vendor = vendor
     end                
 end
 
+% Provide feedback
+disp('Saving to 4D NIFTI files completed.');
+
 %% Step 2: save sepia header for each dataset
 % loop for all vendors
 for curr_vendor = vendor
@@ -136,3 +140,7 @@ for curr_vendor = vendor
         end
     end                
 end
+
+% Provide feedback
+disp('Saving SEPIA header files completed.');
+disp('Executed Preparation_04_prepare_for_sepia.m without issue.');

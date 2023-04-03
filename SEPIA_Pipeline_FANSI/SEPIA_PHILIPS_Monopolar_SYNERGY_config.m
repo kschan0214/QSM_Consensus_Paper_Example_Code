@@ -1,20 +1,21 @@
-%% SEPIA_GE_Monopolar_config.m
+%% SEPIA_PHILIPS_Monopolar_SYNERGY_config.m
 %
 % Objective:
-%   (1) Perform QSM recon based on 'Standard' pipeline in the consensus paper
+%   (1) Perform QSM recon based on 'Pipeline_FANSI' pipeline in the consensus paper
 %
 % Dependencies: 
-%   (1) SEPIA v1.2.0
+%   (1) SEPIA v1.2.2.4
 %   (2) ROMEO v3.5.6 
-%   (3) STI Suite v3 
-%   (4) MRI Susceptibility Calculation toolbox
+%   (3) FANSI v3
 % 
 % Data required: 
-%   SEPIA-ready multi-echo GRE data from GE, Monopolar readout
+%   SEPIA-ready multi-echo GRE data from PHILIPS, Monopolar readout,
+%   SYNERGY normalisation
 %
 % Kwok-shing Chan @ DCCN
 % kwokshing.chan@donders.ru.nl
 % Date created: 08 Sep 2022
+% Date modified: 30 March 2023 (v0.2.1)
 %
 %% Mandatory user input 
 % Specify the path of the top directory containing the DICOMs and scripts
@@ -28,11 +29,11 @@ work_dir        = fullfile(pwd,'..','..');
 % Input/Output filenames
 % You can also specify the directory containing the SEPIA-ready data here
 
-input           = fullfile(work_dir,'derivatives','SEPIA','GE','Monopolar','GRE');
-output_basename = fullfile(input,'Pipeline_Standard','sub-001_ses-GE_acq-Monopolar');
+input           = fullfile(work_dir,'derivatives','SEPIA','PHILIPS','Monopolar_SYNERGY','GRE');
+output_basename = fullfile(input,'Pipeline_FANSI','sub-001_ses-PHILIPS_acq-MonopolarSYNERGY');
 mask_filename   = [''] ;
 
-%% SEPIA Main
+%% SEPIA main
 
 % add general Path
 sepia_addpath;
@@ -42,7 +43,7 @@ algorParam = struct();
 algorParam.general.isBET = 1 ;
 algorParam.general.fractional_threshold = 0.5 ;
 algorParam.general.gradient_threshold = 0 ;
-algorParam.general.isInvert = 1 ;
+algorParam.general.isInvert = 0 ;
 % Total field recovery algorithm parameters
 algorParam.unwrap.echoCombMethod = 'ROMEO total field calculation' ;
 algorParam.unwrap.offsetCorrect = 'On' ;
@@ -62,9 +63,18 @@ algorParam.bfr.method = 'VSHARP' ;
 algorParam.bfr.radius = [12:-1:1] ;
 % QSM algorithm parameters
 algorParam.qsm.reference_tissue = 'Brain mask' ;
-algorParam.qsm.method = 'MRI Suscep. Calc.' ;
-algorParam.qsm.solver = 'Iterative Tikhonov' ;
-algorParam.qsm.lambda = 0.1 ;
-algorParam.qsm.tolerance = 0.03 ;
+algorParam.qsm.method = 'FANSI' ;
+algorParam.qsm.tol = 0.1 ;
+algorParam.qsm.maxiter = 400 ;
+algorParam.qsm.lambda = 0.0005 ;
+algorParam.qsm.mu1 = 0.05 ;
+algorParam.qsm.mu2 = 1 ;
+algorParam.qsm.solver = 'Non-linear' ;
+algorParam.qsm.constraint = 'TV' ;
+algorParam.qsm.gradient_mode = 'Vector field' ;
+algorParam.qsm.isGPU = 0 ;
+algorParam.qsm.isWeakHarmonic = 1 ;
+algorParam.qsm.beta = 150 ;
+algorParam.qsm.muh = 3 ;
 
 sepiaIO(input,output_basename,mask_filename,algorParam);

@@ -1,6 +1,6 @@
 # Example Codes for QSM consensus data processing
 
-Version: 0.2.0
+Version: 0.2.1
 
 ## Introduction  
 
@@ -11,7 +11,7 @@ The example codes implemented QSM reconstruction using the SEPIA framework. The 
 1. (Optional) Data preparation (including shell scripts and Matlab scripts)
 2. QSM recon pipeline (Matlab scripts only)
 
-All scripts were tested in the two Unix enrivonments: (1) Linux CentOS 7 and (2) macOS 12.6. For Microsoft Windows users, you might need to explore an alternative way to run the shell scripts for the data preparation part, e.g. Gitbash, Cygwin or WLS (Unfortunately I do not have access to validate the shell scripts on Windows).
+All scripts were tested in the two Unix enrivonments: (1) Linux CentOS 7 and (2) macOS 13.2. For Microsoft Windows users, you might need to explore an alternative way to run the shell scripts for the data preparation part, e.g. Gitbash, Cygwin or WLS (Unfortunately I do not have access to validate the shell scripts on Windows).
 
 Before you getting started, please make sure you have the following setup ready in your computer:
 
@@ -22,7 +22,7 @@ Before you getting started, please make sure you have the following setup ready 
 ### Dependencies
 
 - [dcm2niix](https://github.com/rordenlab/dcm2niix)(version 1.0.20220720)
-- [SEPIA](https://github.com/kschan0214/sepia/releases/tag/v1.2.2.2) (v1.2.2.2)
+- [SEPIA](https://github.com/kschan0214/sepia/releases/tag/v1.2.2.4) (v1.2.2.4)
 - [MRITOOLS](https://github.com/korbinian90/CompileMRI.jl/releases/tag/v3.5.6) (v3.5.6)
 - [MRI susceptibility calculation methods](https://xip.uclb.com/product/mri_qsm_tkd) (accessed 12 September 2019)
 - [MEDI toolbox](http://pre.weill.cornell.edu/mri/pages/qsm.html) (release: 15th January 2020)
@@ -30,21 +30,30 @@ Before you getting started, please make sure you have the following setup ready 
 
 ## Data availability
 
-Data are available from three vendors: GE, Siemens and Philips. For each vendor, both monopolar and bipolar readout strategies were used to acquire the data. The data from GE and Siemens are not pre-scan normalized, while the Philips data have two normalization methods applied.
+Data are available from three vendors: GE, SIEMENS and PHILIPS, using the recommended acquisition in the main text. For each vendor, both monopolar and bipolar readout strategies were used to acquire the data for demonstration purposes. The data from GE and SIEMENS are not pre-scan normalized (which does not follow the recommendation), while the PHILIPS data have two normalization methods applied. In this way, we demonstrate the robustness of the proposed pipeline to a variety of implementations of the recommended protocol.
 
 ![data_availability](https://github.com/kschan0214/QSM_Consensus_Paper_Example_Code/blob/main/docs/Figures/Data_availability.png?raw=true)
 
 ## Data preparation and organization
 
-This section describes all procedures performed to prepare SEPIA-ready data from the DICOM images.
+Background: There are two zip files available in Zenodo containing the example data organised in two different ways: 
+(a)	“QSM_CONSENSUS_Paper_Example_DICOM_code.zip”
+This zip file contains example DICOM images exported from the scanners without any modifications. The code directory accompanied with this file contains the scripts to (1) convert the DICOM images to NIFTI format, (2) organise the NIFTI images according to BIDS v1.8.0, and (3) perform QSM reconstruction.
 
-**Remark: You may skip this section if you are not interested in converting DICOM data to BIDS compatible format for SEPIA**
+(b)	“QSM_Consensus_Paper_example_Data_Result_Code.zip” 
+This zip file contains all data and results that were produced by running all the scripts provided in the code directory. 
+
+**Remark: The following Data Preparation section provides information on all the pre-processing steps to prepare the unmodified DICOM images to the BIDS format data that is ready for QSM reconstruction in SEPIA. If the readers are interested in the QSM reconstruction and work on the “QSM_Consensus_Paper_example_Data_Result_Code.zip” file only, they may skip Section “Data Preparation”.**
 
 ### Data preparation
+
+The scripts created for this section were tested on a Mac system (macOS 13.2) and a Linux system (CentOS 7). These were not tested on Windows systems and would require adaptations to work on that OS.
 
 #### Step 0: Download the DICOM data from online repository and unzip it. 
 
 Once you uncompressed the file, you should see there is a compressed file, which contains all DICOM images, and a folder that contains all the scripts used for the processing.
+
+Most imaging software in the field typically deals with images in Analyze or NIfTI format. As such the raw data (imaging data after coil combination) provided has to be converted to this format in 4 steps:
 
 ![data_preparation_step0](https://github.com/kschan0214/QSM_Consensus_Paper_Example_Code/blob/main/docs/Figures/data_prep_step0.png?raw=true)
 
@@ -115,17 +124,17 @@ Now the data are ready for QSM recon in SEPIA!
 
 ### Data organization
 
-The data should be organised in the following way after the above operations
+The following tree diagram illustrates the directory structure of how the data are organised after running all the scripts provided in the code directory “QSM_Consensus_Paper_Example_Code/”. The content of the different directories is mentioned after the comment “%” symbol. Note that similar directories exist under the “/derivatives/SEPIA/SIEMENS/” and “/derivatives/SEPIA/PHILIPS/” as under “/derivatives/SEPIA/GE/”.
 
 ```
   QSM_Consensus_Paper_Example_DICOM_Code/
   |-- QSM_CONSENSUS_DATA.zip                      % zip file containing all DICOM images
   |-- protocols                                   % Protocol text files
   |-- QSM_Consensus_Paper_Example_Code            % containing all the scripts
+  |   |-- doc                                     % Containing manual to use the Example data
   |   |-- From_DICOM_zip_file_to_SEPIA_ready      % Scripts for preparing QSM_CONSENSUS_DATA.zip to NIfTI images
-  |   |-- SEPIA_Standard_Pipeline                 % SEPIA pipeline config files for Standard
-  |   |-- SEPIA_Alternative1_Pipeline             % SEPIA pipeline config files for Alternative 1 (MEDI)
-  |   `-- SEPIA_Alternative2_Pipeline             % SEPIA pipeline config files for Alternative 2 (FANSI)
+  |   |-- SEPIA_Pipeline_FANSI 			              % SEPIA pipeline config files with FANSI recon
+  |   `-- SEPIA_Pipeline_MEDI 			              % SEPIA pipeline config files with MEDI recon
   |-- raw                                         % folder containing all DICOM images, sorted by vendors
   |-- converted                                   % dcm2niix output
   |   |-- GE
@@ -144,9 +153,8 @@ The data should be organised in the following way after the above operations
           |-- GE
           |   |-- Bipolar
           |   |   `-- GRE
-          |   |       |-- Pipeline_Standard       % Standard reconstruction output
-          |   |       |-- Pipeline_Alternative1   % Dipole inversion alternative 1 output
-          |   |       `-- Pipeline_Alternative2   % Dipole inversion alternative 2 output
+          |   |       |-- Pipeline_FANSI 	        % Full QSM recon using FANSI for dipole inversion
+          |   |       `-- Pipeline_MEDI 	        % Full QSM recon using MEDI for dipole inversion
           |   `-- Monopolar
           |-- PHILIPS
           `-- SIEMENS
@@ -156,11 +164,10 @@ The data should be organised in the following way after the above operations
 
 This section describes all the QSM reconstruction processing steps performed in SEPIA. **All the processing steps are specified in the SEPIA pipeline configuration files**, which are in the sub-directories of the script directory:
 
-- 'QSM_Consensus_Paper_Example_Code/SEPIA_Standard_Pipeline/',
-- 'QSM_Consensus_Paper_Example_Code/SEPIA_Alternative1_Pipeline/' and
-- 'QSM_Consensus_Paper_Example_Code/SEPIA_Alternative2_pipeline/'
+- 'QSM_Consensus_Paper_Example_Code/SEPIA_Pipeline_FANSI/' and
+- 'QSM_Consensus_Paper_Example_Code/SEPIA_Pipeline_MEDI/'
 
-corresponding to the three processing pipelines demonstrated as follows.
+corresponding to the two processing pipelines demonstrated as follows.
 
 ### Environment and dependencies
 
@@ -176,19 +183,23 @@ The data were processed using the following set-up
 
 #### Dependencies
 
-- [SEPIA](https://github.com/kschan0214/sepia/releases/tag/v1.2.2.2) (v1.2.2.2)
+- [SEPIA](https://github.com/kschan0214/sepia/releases/tag/v1.2.2.4) (v1.2.2.4)
 - [MRITOOLS](https://github.com/korbinian90/CompileMRI.jl/releases/tag/v3.5.6) (v3.5.6)
 - [MRI susceptibility calculation methods](https://xip.uclb.com/product/mri_qsm_tkd) (accessed 12 September 2019)
 - [MEDI toolbox](http://pre.weill.cornell.edu/mri/pages/qsm.html) (release: 15th January 2020)
 - [FANSI toolbox](https://gitlab.com/cmilovic/FANSI-toolbox) (v3)
 
-### Processing steps
+### QSM reconstruction using Example data
+
+This section describes all the QSM reconstruction settings that were used on the example data. All the methods and algorithm parameters mentioned were already specified in the SEPIA pipeline configuration files (sepia_<GE|PHILIPS|SIEMENS>_<Monopolar|Bipolar>_config.m), which can be found in the sub-directories of the code folder “QSM_Consensus_Paper_Example_Code/”: 
+“SEPIA_Pipeline_FANSI/” and “SEPIA_Pipeline_MEDI/”. Here, we provide an overview of the main parameters of each of these pipelines (Tables S1-S4) for the readers’ convenience.
 
 #### Step 1: Preparation
 
-- (GE only) Phase data is inverted before processing (i.e., phase = -phase), so that paramagnetic susceptibility gives a positive value while diamagnetic susceptibility gives a negative value, same as the other data
+- •	(GE only) Phase data is inverted before QSM recon processing (i.e., phase = -phase) so that paramagnetic susceptibility gives a positive value while diamagnetic susceptibility gives a negative value, same as the data from other vendors. This step was performed with the option provided by SEPIA
 - Brain mask is obtained by using MEDI toolbox implementation of FSL's BET on the 1st echo magnitude image, using default setting -f 0.5 -g 0
 - (Bipolar readout data only) Bipolar readout correction based on (Li et al., 2015) using the implementation provided with SEPIA.
+-	Note that the relevant sequence parameters such as echo time and slice orientation are automatically derived from the data.
 
 #### Step 2: Total field estimation and echo combination
 
@@ -204,44 +215,18 @@ The data were processed using the following set-up
 
 | Parameters | Values | Remark |
 | ----------- | ----------- | ----------- |
-| Method | VSHARP | Li et al., 2011 |
+| Method | VSHARP | Li et al., 2011; SEPIA's implementation |
 | Maximum spherical mean value filtering size | 12 | in voxel |
 | Minimum spherical mean value filtering size | 1 | in voxel |
 | Remove residual B1 field | No |  |
 | Erode brain mask before BFR | 1 | in voxel |
 | Erode brain mask after BFR | 0 |  |
 
-#### Step 4: Dipole inversion (corresponding to “Standard” pipeline)
+#### Step 4: Dipole inversion
 
-| Parameters | Values | Remark |
-| ----------- | ----------- | ----------- |
-| Method | Iterative Tikhonov | Karsa et al., 2020; Schweser et al., 2013 |
-| Regularisation parameter (lambda) | 0.1 |  |
-| Conjugate gradient tolerance | 0.03 |  |
-| Reference tissue | Brain mask |  |
+We demonstrate the dipole inversion steps with two recommended methods (FANSI and MEDI).
 
-### Alternative dipole inversion methods: (MEDI and FANSI)
-
-#### Step 4 (Alternative 1): Dipole inversion
-
-**Output from the ‘Standard’ pipeline is required. The scripts are in QSM_Consensus_Paper_Example_Code/SEPIA_Alternative1_Pipeline/’.**
-
-| Parameters | Values | Remark |
-| ----------- | ----------- | ----------- |
-| Method | MEDI | Liu et al., 2011 |
-| Regularisation parameter (lambda) | 2000 |  |
-| Method of data weighting | 1 |  |
-| Percentage of voxels considered to be edges | 90 |  |
-| Array size for zero padding | [0 0 0] |  |
-| Performing spherical mean value operator | On |  |
-| Radius of the spherical mean value operation | 5 | in voxel |
-| Performing modal error reduction through iterative tuning (MERIT) | On |  |
-| Performing automatic zero reference (MEDI+0) | Off |  |
-| Reference tissue | Brain mask |  |
-
-#### Step 4 (Alternative 2): Dipole inversion
-
-**Output from the ‘Standard’ pipeline is required. The scripts are in QSM_Consensus_Paper_Example_Code/SEPIA_Alternative2_Pipeline/’.**
+##### Step 4.1 : FANSI dipole inversion
 
 | Parameters | Values | Remark |
 | ----------- | ----------- | ----------- |
@@ -259,22 +244,37 @@ The data were processed using the following set-up
 | Harmonic consistency weight | 3 |  |
 | Reference tissue | Brain mask |  |
 
+##### Step 4.2: MEDI Dipole inversion
+
+| Parameters | Values | Remark |
+| ----------- | ----------- | ----------- |
+| Method | MEDI | Liu et al., 2011 |
+| Regularisation parameter (lambda) | 2000 |  |
+| Method of data weighting | 1 |  |
+| Percentage of voxels considered to be edges | 90 |  |
+| Array size for zero padding | [0 0 0] |  |
+| Performing spherical mean value operator | On |  |
+| Radius of the spherical mean value operation | 5 | in voxel |
+| Performing modal error reduction through iterative tuning (MERIT) | On |  |
+| Performing automatic zero reference (MEDI+0) | Off |  |
+| Reference tissue | Brain mask |  |
+
+### Adaptation of the example pipeline to other studies
+
+The provided SEPIA pipeline configuration file (sepia_<GE|PHILIPS|SIEMENS>_<Monopolar|Bipolar>_config.m) can be reused for other studies, assuming the data in these studies have the compatible input directory described in the SEPIA documentation website (https://sepia-documentation.readthedocs.io/en/latest/getting_started/Data-preparation.html):
+This can be done by updating the “input” variable in the configuration file to the location of the input directory that contains all the essential data in your computer. Alternatively, if a graphical operation is preferred, the SEPIA pipeline configuration files can be imported to the SEPIA’s GUI by using the “Load config” button on the bottom left of the GUI display and then select the configuration .m file. The GUI will then be updated to the specified methods and algorithm parameters according to the text in the configuration file. Readers can then specify the required input and output information on the “I/O” panel on the GUI.
+
 ### Example results
 
-Standard pipeline
-![standard_results](https://github.com/kschan0214/QSM_Consensus_Paper_Example_Code/blob/main/docs/Figures/example_standard_v0p2.png)
+Magnetic susceptibility maps with FANSI recon
+![FANSI](https://github.com/kschan0214/QSM_Consensus_Paper_Example_Code/blob/main/docs/Figures/example_fansi.png)
 
-Alternative 1 (MEDI)
-![alternative1_results](https://github.com/kschan0214/QSM_Consensus_Paper_Example_Code/blob/main/docs/Figures/example_alternative1_v0p2.png)
-
-Alternative 2 (FANSI)
-![alternative2_results](https://github.com/kschan0214/QSM_Consensus_Paper_Example_Code/blob/main/docs/Figures/example_alternative2_v0p2.png)
+Magnetic susceptibility maps with MEDI recon
+![MEDI](https://github.com/kschan0214/QSM_Consensus_Paper_Example_Code/blob/main/docs/Figures/example_medi.png)
 
 ## References
 
 [Dymerska, B., Eckstein, K., Bachrata, B., Siow, B., Trattnig, S., Shmueli, K., Robinson, S.D., 2021. Phase unwrapping with a rapid opensource minimum spanning tree algorithm (ROMEO). Magnetic resonance in medicine 85, 2294–2308.](https://doi.org/10.1002/mrm.28563)
-
-[Karsa, A., Punwani, S., Shmueli, K., 2020. An optimized and highly repeatable MRI acquisition and processing pipeline for quantitative susceptibility mapping in the head-and-neck region. Magnetic resonance in medicine 84, 3206–3222.](https://doi.org/10.1002/mrm.28377)
 
 [Li, J., Chang, S., Liu, T., Jiang, H., Dong, F., Pei, M., Wang, Q., Wang, Y., 2015. Phase-corrected bipolar gradients in multi-echo gradient-echo sequences for quantitative susceptibility mapping. Magma (New York, N.Y.) 28, 347–355.](https://doi.org/10.1007/s10334-014-0470-3)
 
@@ -286,4 +286,3 @@ Alternative 2 (FANSI)
 
 [Milovic, C., Bilgic, B., Zhao, B., Langkammer, C., Tejos, C., Cabronero, J.A., 2019. Weak-harmonic regularization for quantitative susceptibility mapping. Magnetic resonance in medicine 81, 1399–1411.](https://doi.org/10.1002/mrm.27483)
 
-[Schweser, F., Deistung, A., Sommer, K., Reichenbach, J.R., 2013. Toward online reconstruction of quantitative susceptibility maps: superfast dipole inversion. Magnetic resonance in medicine 69, 1582–1594.](https://doi.org/10.1002/mrm.24405)
